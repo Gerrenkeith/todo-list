@@ -116,17 +116,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _greeting_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./greeting.js */ \"./src/greeting.js\");\n/* harmony import */ var _strawgold_jollyroger_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./strawgold-jollyroger.jpg */ \"./src/strawgold-jollyroger.jpg\");\n// src/index.js\n\n\n\n\nconsole.log(_greeting_js__WEBPACK_IMPORTED_MODULE_1__.greeting);\n\n// src/index.js\n\n   \nconst image = document.createElement(\"img\");\nimage.src = _strawgold_jollyroger_jpg__WEBPACK_IMPORTED_MODULE_2__;\n   \ndocument.body.appendChild(image);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMiLCJtYXBwaW5ncyI6Ijs7OztBQUFBO0FBQ3NCO0FBQ21CO0FBQ007O0FBRS9DLFlBQVksa0RBQVE7O0FBRXBCOztBQUVBO0FBQ0E7QUFDQSxZQUFZLHNEQUFLO0FBQ2pCO0FBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly90b2RvLWxpc3QvLi9zcmMvaW5kZXguanM/YjYzNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBzcmMvaW5kZXguanNcbmltcG9ydCBcIi4vc3R5bGVzLmNzc1wiO1xuaW1wb3J0IHsgZ3JlZXRpbmcgfSBmcm9tIFwiLi9ncmVldGluZy5qc1wiO1xuaW1wb3J0IGpvbGx5IGZyb20gXCIuL3N0cmF3Z29sZC1qb2xseXJvZ2VyLmpwZ1wiO1xuXG5jb25zb2xlLmxvZyhncmVldGluZyk7XG5cbi8vIHNyYy9pbmRleC5qc1xuXG4gICBcbmNvbnN0IGltYWdlID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImltZ1wiKTtcbmltYWdlLnNyYyA9IGpvbGx5O1xuICAgXG5kb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGltYWdlKTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _greeting_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./greeting.js */ \"./src/greeting.js\");\n/* harmony import */ var _lists_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lists.js */ \"./src/lists.js\");\n// src/index.js\n\n\n\n\nconsole.log(_greeting_js__WEBPACK_IMPORTED_MODULE_1__.greeting);\n\nfunction addToList(title, description, dueDate, priority, notes, checklist) {\n    const newItem = (0,_lists_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(title, description, dueDate, priority, notes, checklist);\n    list.push(newItem);\n}\n\nlet list = []\naddToList(\"Mow the lawn\", \"Mow the front and back yard\", \"2023-10-01\", \"high\", \"Use the new mower\", [\"front yard\", \"back yard\"]);\naddToList(\"Grocery shopping\", \"Buy ingredients for dinner\", \"2023-10-02\", \"medium\", \"Check for discounts\", [\"chicken\", \"vegetables\", \"spices\"]);\n\nconsole.log(list);\n\nconst body = document.querySelector(\"body\");\nconst app = document.createElement(\"div\");\nconst h1 = document.createElement(\"h1\");\nh1.textContent = _greeting_js__WEBPACK_IMPORTED_MODULE_1__.greeting;\nbody.appendChild(app);\napp.appendChild(h1);\n\nconst listContainer = document.createElement(\"div\");\nlistContainer.className = \"list-container\";\napp.appendChild(listContainer);\n\nlist.forEach(item => {\n    const itemDiv = document.createElement(\"div\");\n    itemDiv.className = \"list-item\";\n    itemDiv.textContent = item.title;\n    listContainer.appendChild(itemDiv);\n});\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMiLCJtYXBwaW5ncyI6Ijs7OztBQUFBO0FBQ3NCO0FBQ21CO0FBQ0o7O0FBRXJDLFlBQVksa0RBQVE7O0FBRXBCO0FBQ0Esb0JBQW9CLHFEQUFXO0FBQy9CO0FBQ0E7O0FBRUE7QUFDQTtBQUNBOztBQUVBOztBQUVBO0FBQ0E7QUFDQTtBQUNBLGlCQUFpQixrREFBUTtBQUN6QjtBQUNBOztBQUVBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3RvZG8tbGlzdC8uL3NyYy9pbmRleC5qcz9iNjM1Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIHNyYy9pbmRleC5qc1xuaW1wb3J0IFwiLi9zdHlsZXMuY3NzXCI7XG5pbXBvcnQgeyBncmVldGluZyB9IGZyb20gXCIuL2dyZWV0aW5nLmpzXCI7XG5pbXBvcnQgY3JlYXRlTGlzdHMgZnJvbSBcIi4vbGlzdHMuanNcIjtcblxuY29uc29sZS5sb2coZ3JlZXRpbmcpO1xuXG5mdW5jdGlvbiBhZGRUb0xpc3QodGl0bGUsIGRlc2NyaXB0aW9uLCBkdWVEYXRlLCBwcmlvcml0eSwgbm90ZXMsIGNoZWNrbGlzdCkge1xuICAgIGNvbnN0IG5ld0l0ZW0gPSBjcmVhdGVMaXN0cyh0aXRsZSwgZGVzY3JpcHRpb24sIGR1ZURhdGUsIHByaW9yaXR5LCBub3RlcywgY2hlY2tsaXN0KTtcbiAgICBsaXN0LnB1c2gobmV3SXRlbSk7XG59XG5cbmxldCBsaXN0ID0gW11cbmFkZFRvTGlzdChcIk1vdyB0aGUgbGF3blwiLCBcIk1vdyB0aGUgZnJvbnQgYW5kIGJhY2sgeWFyZFwiLCBcIjIwMjMtMTAtMDFcIiwgXCJoaWdoXCIsIFwiVXNlIHRoZSBuZXcgbW93ZXJcIiwgW1wiZnJvbnQgeWFyZFwiLCBcImJhY2sgeWFyZFwiXSk7XG5hZGRUb0xpc3QoXCJHcm9jZXJ5IHNob3BwaW5nXCIsIFwiQnV5IGluZ3JlZGllbnRzIGZvciBkaW5uZXJcIiwgXCIyMDIzLTEwLTAyXCIsIFwibWVkaXVtXCIsIFwiQ2hlY2sgZm9yIGRpc2NvdW50c1wiLCBbXCJjaGlja2VuXCIsIFwidmVnZXRhYmxlc1wiLCBcInNwaWNlc1wiXSk7XG5cbmNvbnNvbGUubG9nKGxpc3QpO1xuXG5jb25zdCBib2R5ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcImJvZHlcIik7XG5jb25zdCBhcHAgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuY29uc3QgaDEgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiaDFcIik7XG5oMS50ZXh0Q29udGVudCA9IGdyZWV0aW5nO1xuYm9keS5hcHBlbmRDaGlsZChhcHApO1xuYXBwLmFwcGVuZENoaWxkKGgxKTtcblxuY29uc3QgbGlzdENvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5saXN0Q29udGFpbmVyLmNsYXNzTmFtZSA9IFwibGlzdC1jb250YWluZXJcIjtcbmFwcC5hcHBlbmRDaGlsZChsaXN0Q29udGFpbmVyKTtcblxubGlzdC5mb3JFYWNoKGl0ZW0gPT4ge1xuICAgIGNvbnN0IGl0ZW1EaXYgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICAgIGl0ZW1EaXYuY2xhc3NOYW1lID0gXCJsaXN0LWl0ZW1cIjtcbiAgICBpdGVtRGl2LnRleHRDb250ZW50ID0gaXRlbS50aXRsZTtcbiAgICBsaXN0Q29udGFpbmVyLmFwcGVuZENoaWxkKGl0ZW1EaXYpO1xufSk7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/index.js\n");
 
 /***/ }),
 
-/***/ "./src/strawgold-jollyroger.jpg":
-/*!**************************************!*\
-  !*** ./src/strawgold-jollyroger.jpg ***!
-  \**************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ "./src/lists.js":
+/*!**********************!*\
+  !*** ./src/lists.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "344b10b290f5fc94385d.jpg";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\nconst createLists = (title, description, dueDate, priority, notes, checklist) => {\n\n    return { title, description, dueDate, priority, notes, checklist};\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createLists);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvbGlzdHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7QUFDQTs7QUFFQSxhQUFhO0FBQ2I7O0FBRUEsaUVBQWUsV0FBVyIsInNvdXJjZXMiOlsid2VicGFjazovL3RvZG8tbGlzdC8uL3NyYy9saXN0cy5qcz81NWRiIl0sInNvdXJjZXNDb250ZW50IjpbIlxuY29uc3QgY3JlYXRlTGlzdHMgPSAodGl0bGUsIGRlc2NyaXB0aW9uLCBkdWVEYXRlLCBwcmlvcml0eSwgbm90ZXMsIGNoZWNrbGlzdCkgPT4ge1xuXG4gICAgcmV0dXJuIHsgdGl0bGUsIGRlc2NyaXB0aW9uLCBkdWVEYXRlLCBwcmlvcml0eSwgbm90ZXMsIGNoZWNrbGlzdH07XG59O1xuXG5leHBvcnQgZGVmYXVsdCBjcmVhdGVMaXN0czsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/lists.js\n");
 
 /***/ }),
 
@@ -191,18 +191,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -217,29 +205,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
-/******/ 				scriptUrl = document.currentScript.src;
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) {
-/******/ 					var i = scripts.length - 1;
-/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
-/******/ 				}
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/^blob:/, "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
