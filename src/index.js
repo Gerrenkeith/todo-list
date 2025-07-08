@@ -2,6 +2,7 @@
 import "./styles.css";
 import { greeting } from "./greeting.js";
 import createLists from "./lists.js";
+import checkPriority from "./priority.js"
 
 console.log(greeting);
 
@@ -27,12 +28,27 @@ const listContainer = document.createElement("div");
 listContainer.className = "list-container";
 app.appendChild(listContainer);
 
-list.forEach(item => {
-    const itemDiv = document.createElement("div");
+function displayList(){
+list.forEach((item, index) => {
+    const itemExist = document.getElementById(index);
+    // Check if the item already exists in the DOM 
+    if(!itemExist) {
+      const itemDiv = document.createElement("div");
+      itemDiv.id = index; // Set the id attribute to the index
+      const itemTitle = document.createElement("h3");
+        const itemPriority = document.createElement("p");
+    
+    itemPriority.textContent = checkPriority(item.priority);
+
+    itemTitle.textContent = item.title;
     itemDiv.className = "list-item";
-    itemDiv.textContent = item.title;
+    itemDiv.appendChild(itemTitle);
+    itemDiv.appendChild(itemPriority);
     listContainer.appendChild(itemDiv);
+}
 });
+}
+displayList();
 
 const projectButtonDiv = document.createElement("div");
 projectButtonDiv.className = "project-button-div";
@@ -76,11 +92,8 @@ const projectFormSubmitHandler = (e) => {
     const notes = document.getElementById("notes").value;
     const checklistInput = document.getElementById("checklist").value;
     addToList(title, description, dueDate, priority, notes, checklistInput);
-    const newItem  = document.createElement("div");
-    newItem.className = "list-item";
-    newItem.textContent = title;
-    listContainer.appendChild(newItem);
-    console.log(list);
+
+    displayList(); // Refresh the displayed list
     formDiv.remove(); // Remove the form after submission
 };
 
@@ -92,6 +105,7 @@ addProjectButton.addEventListener("click", () => {
         if (projectForm && !projectForm.hasSubmitHandler) {
             projectForm.addEventListener("submit", projectFormSubmitHandler);
             projectForm.hasSubmitHandler = true;
+            console.log(projectForm)
         }
     }
 });
