@@ -31,8 +31,9 @@ app.appendChild(listContainer);
 function displayList(){
 list.forEach((item, index) => {
     const itemExist = document.getElementById(index);
+    const itemTitleExist = document.getElementById(item.title);
     // Check if the item already exists in the DOM 
-    if(!itemExist) {
+    if(!itemExist && !itemTitleExist) {
       const itemDiv = document.createElement("div");
       itemDiv.id = index; // Set the id attribute to the index
       const itemTitle = document.createElement("h3");
@@ -41,6 +42,7 @@ list.forEach((item, index) => {
     itemPriority.textContent = checkPriority(item.priority);
 
     itemTitle.textContent = item.title;
+    itemTitle.id = item.title;
     itemDiv.className = "list-item";
     itemDiv.appendChild(itemTitle);
     itemDiv.appendChild(itemPriority);
