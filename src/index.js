@@ -7,12 +7,19 @@ import checkPriority from "./priority.js"
 console.log(greeting);
 
 function addToList(title, description, dueDate, priority, notes, checklist) {
+    const exists = list.some(item => item.title.toLowerCase() === title.toLowerCase());
+    if (exists) {
+        alert("A project with this title already exists.");
+        return false; // Not added
+    }
     const newItem = createLists(title, description, dueDate, priority, notes, checklist);
     list.push(newItem);
+    return true; // Added
 }
 
 let list = []
-addToList("Mow the lawn", "Mow the front and back yard", "2023-10-01", "high", "Use the new mower", ["front yard", "back yard"]);
+
+addToList("Project 1", undefined, undefined, "high");
 
 
 console.log(list);
@@ -28,27 +35,25 @@ const listContainer = document.createElement("div");
 listContainer.className = "list-container";
 app.appendChild(listContainer);
 
-function displayList(){
-list.forEach((item, index) => {
-    const itemExist = document.getElementById(index);
-    const itemTitleExist = document.getElementById(item.title);
-    // Check if the item already exists in the DOM 
-    if(!itemExist && !itemTitleExist) {
-      const itemDiv = document.createElement("div");
-      itemDiv.id = index; // Set the id attribute to the index
-      const itemTitle = document.createElement("h3");
+function displayList() {
+    // Clear the container before re-rendering
+    listContainer.innerHTML = "";
+    list.forEach((item, index) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.id = index;
+        const itemTitle = document.createElement("h3");
         const itemPriority = document.createElement("p");
-    
-    itemPriority.textContent = checkPriority(item.priority);
 
-    itemTitle.textContent = item.title;
-    itemTitle.id = item.title;
-    itemDiv.className = "list-item";
-    itemDiv.appendChild(itemTitle);
-    itemDiv.appendChild(itemPriority);
-    listContainer.appendChild(itemDiv);
-}
-});
+        const changePriorityButton = document.createElement("button");
+        itemPriority.textContent = checkPriority(item.priority);
+        itemTitle.textContent = item.title;
+        itemTitle.id = item.title;
+        itemDiv.className = "list-item";
+        itemDiv.appendChild(itemTitle);
+        itemDiv.appendChild(changePriorityButton);
+        changePriorityButton.appendChild(itemPriority);
+        listContainer.appendChild(itemDiv);
+    });
 }
 displayList();
 
@@ -66,20 +71,6 @@ formDiv.innerHTML = `
     <form id="projectForm">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" ></textarea>
-        <label for="dueDate">Due Date:</label>
-        <input type="date" id="dueDate" name="dueDate">
-        <label for="priority">Priority:</label>
-        <select id="priority" name="priority" >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-        </select>
-        <label for="notes">Notes:</label>
-        <textarea id="notes" name="notes"></textarea>
-        <label for="checklist">Checklist:</label>
-        <input type="text" id="checklist" name="checklist" placeholder="Enter checklist items separated by commas">
         <button type="submit">Add Project</button>
     </form>
 `;
@@ -88,15 +79,13 @@ formDiv.innerHTML = `
 const projectFormSubmitHandler = (e) => {
     e.preventDefault();
     const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const dueDate = document.getElementById("dueDate").value;
-    const priority = document.getElementById("priority").value;
-    const notes = document.getElementById("notes").value;
-    const checklistInput = document.getElementById("checklist").value;
-    addToList(title, description, dueDate, priority, notes, checklistInput);
 
-    displayList(); // Refresh the displayed list
-    formDiv.remove(); // Remove the form after submission
+    const added = addToList(title);
+
+    if (added) {
+        displayList(); // Refresh the displayed list
+        formDiv.remove(); // Remove the form after submission
+    }
 };
 
 addProjectButton.addEventListener("click", () => {
@@ -111,3 +100,4 @@ addProjectButton.addEventListener("click", () => {
         }
     }
 });
+
