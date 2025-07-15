@@ -1,5 +1,5 @@
 let list = [];
- function createLists(title, description, dueDate, priority, notes = "", checklist = []) {
+ function createLists(title, priority,description, dueDate,  notes = "", checklist = []) {
     return {
         title,
         description,
@@ -10,13 +10,13 @@ let list = [];
     };
 }
 
-function addToList(title, description, dueDate, priority, notes, checklist) {
+function addToList(title, priority, description, dueDate, notes, checklist) {
     const exists = list.some(item => item.title.toLowerCase() === title.toLowerCase());
     if (exists) {
         alert("A project with this title already exists.");
         return false;
     }
-    const newItem = createLists(title, description, dueDate, priority, notes, checklist);
+    const newItem = createLists(title, priority, description, dueDate, notes, checklist);
     list.push(newItem);
     return true;
 }

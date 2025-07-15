@@ -1,8 +1,8 @@
 function getPrioritySymbol(priority) {
-    if (priority === "high") {
+    if (priority === "3") {
         return "🔴";
-    } else if (priority === "medium") {
-        return "🟠";
+    } else if (priority === "2") {
+        return "🟠";        
     } else {
         return "🟢";
     }

@@ -1,19 +1,30 @@
 import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
 
-function displayList(listContainer) {
-    const list = getList();
+function displayProjects(listContainer) {
+      const sortedList = [...getList()].sort((a, b) => Number(b.priority) - Number(a.priority));
+
     listContainer.innerHTML = "";
-    list.forEach((item, index) => {
+    sortedList.forEach((item, index) => {
         const itemDiv = document.createElement("div");
         itemDiv.id = index;
+        itemDiv.className = "list-item";
         const itemTitle = document.createElement("h3");
         itemTitle.textContent = item.title;
         itemTitle.id = item.title;
-        itemDiv.className = "list-item";
         itemDiv.appendChild(itemTitle);
         listContainer.appendChild(itemDiv);
-    });
+
+        if (item.priority) {
+            const prioritySymbol = checkPriority(item.priority);
+            const prioritySpan = document.createElement("span");
+            prioritySpan.textContent = prioritySymbol;
+            prioritySpan.className = "priority-symbol";
+            itemDiv.appendChild(prioritySpan);
+        }
+    })
+
+    console.log(sortedList)
 }
 
-export default displayList;
+export default displayProjects;
