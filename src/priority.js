@@ -3,8 +3,10 @@ function getPrioritySymbol(priority) {
         return "🔴";
     } else if (priority === "2") {
         return "🟠";        
-    } else {
+    } else if (priority === "1") {
         return "🟢";
+    }else {
+        return null
     }
 }
 
