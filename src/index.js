@@ -40,6 +40,16 @@ formDiv.innerHTML = `
             <option value="2">Medium</option>
             <option value="3">High</option>
         </select>
+        <label for="date">Due Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+        <label for="checklist">Checklist (comma-separated):</label>
+        <input type="text" id="checklist" name="checklist" placeholder="Item 1, Item 2, Item 3">
+        <br>
+        <br>
         <button type="submit">Add Project</button>
         <button type="button" id="cancelButton">Cancel</button>
     </form>
@@ -52,7 +62,13 @@ const projectFormSubmitHandler = (e) => {
     e.preventDefault();
     const title = document.getElementById("title").value;
     const priority = document.getElementById("priority").value;
-    const added = addToList(title,priority);
+    const date = document.getElementById("date").value;
+    const description = document.getElementById("description").value;
+    const notes = document.getElementById("notes").value;
+    const checklistInput = document.getElementById("checklist").value;
+    const checklist = checklistInput ? checklistInput.split(",").map(item => item.trim()) : [];
+
+    const added = addToList(title, priority, date, description, notes, checklist);
     if (added) {
         displayProjects(listContainer);
         formDiv.remove();

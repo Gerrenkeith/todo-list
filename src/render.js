@@ -1,6 +1,7 @@
 import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
 import editButton from "./editButton.js";
+import deleteButton from "./deletebutton.js";
 
 console.log(getList())
 function displayProjects(listContainer) {
@@ -26,6 +27,13 @@ function displayProjects(listContainer) {
             itemDiv.appendChild(prioritySpan);
         }
 
+        if (item.dueDate) {
+            const dueDateSpan = document.createElement("span");
+            dueDateSpan.textContent = `Due: ${item.dueDate}`;
+            dueDateSpan.className = "due-date";
+            itemDiv.appendChild(dueDateSpan);
+        }
+
         console.log(item)
         const editbtn = editButton()
 
@@ -35,16 +43,9 @@ function displayProjects(listContainer) {
             let editForm = `
             <h3>Edit Project</h3>
             <form id="editForm">
-            `;
-
-            if(item.title){
-               editForm += `<label for="editTitle">Title:</label>
-                        <input type="text" id="editTitle" name="editTitle" value="${item.title}" required>`
-                        }
-
-            if(item.priority){
-                editForm += `
-                        <label for="editPriority">Priority:</label>
+                <label for="editTitle">Title:</label>
+                <input type="text" id="editTitle" name="editTitle" value="${item.title}" required>
+                <label for="editPriority">Priority:</label>
                         <select id="editPriority" name="editPriority">
                             <option value="" ${item.priority === "" ? "selected" : ""}>Select Priority</option>
                             <option value="1" ${item.priority === "1" ? "selected" : ""}>Low</option>
@@ -52,9 +53,9 @@ function displayProjects(listContainer) {
                             <option value="3" ${item.priority === "3" ? "selected" : ""}>High</option>
                         </select>
                         <button type="submit">Save Changes</button>
+                        <button type="button" id="cancelEditButton">Cancel</button>
                     </form>
                 `;
-            }
 
             itemDiv.innerHTML = editForm;
 
@@ -70,12 +71,31 @@ function displayProjects(listContainer) {
                     displayProjects(listContainer);
                 });
             }
+
+            const cancelEditButton = document.getElementById("cancelEditButton");
+            cancelEditButton.addEventListener("click", () => {
+                displayProjects(listContainer);
+            }); 
+
         });
 
     
         itemDiv.appendChild(editbtn);
+
+            const deletebtn = deleteButton();
+        deletebtn.addEventListener("click", () => {
+            const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
+            
+                getList().splice(indexTodelete, 1);
+            
+            displayProjects(listContainer);
+        });
+        itemDiv.appendChild(deletebtn);
    
         })
+
+    
+
 
     console.log(sortedList)
 }
