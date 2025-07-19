@@ -1,14 +1,14 @@
 import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
-import editButton from "./editButton.js";
-import deleteButton from "./deletebutton.js";
+import {createEditButton, editButtonClick} from "./editButton.js";
+import deleteButton from "./deleteButton.js";
 
 console.log(getList())
-function displayProjects(listContainer) {
+function displayProjects(container) {
       const sortedList = [...getList()].sort((a, b) => Number(b.priority) - Number(a.priority));
 
       console.log(sortedList);
-    listContainer.innerHTML = "";
+    container.innerHTML = "";
     sortedList.forEach((item, index) => {
         const itemDiv = document.createElement("div");
         itemDiv.id = index;
@@ -17,7 +17,7 @@ function displayProjects(listContainer) {
         itemTitle.textContent = item.title;
         itemTitle.id = item.title;
         itemDiv.appendChild(itemTitle);
-        listContainer.appendChild(itemDiv);
+        container.appendChild(itemDiv);
 
         if (item.priority) {
             const prioritySymbol = checkPriority(item.priority);
@@ -35,51 +35,11 @@ function displayProjects(listContainer) {
         }
 
         console.log(item)
-        const editbtn = editButton()
+        const editbtn = createEditButton()
 
-        editbtn.addEventListener("click", () => {
-             itemDiv.innerHTML = "";
 
-            let editForm = `
-            <h3>Edit Project</h3>
-            <form id="editForm">
-                <label for="editTitle">Title:</label>
-                <input type="text" id="editTitle" name="editTitle" value="${item.title}" required>
-                <label for="editPriority">Priority:</label>
-                        <select id="editPriority" name="editPriority">
-                            <option value="" ${item.priority === "" ? "selected" : ""}>Select Priority</option>
-                            <option value="1" ${item.priority === "1" ? "selected" : ""}>Low</option>
-                            <option value="2" ${item.priority === "2" ? "selected" : ""}>Medium</option>
-                            <option value="3" ${item.priority === "3" ? "selected" : ""}>High</option>
-                        </select>
-                        <button type="submit">Save Changes</button>
-                        <button type="button" id="cancelEditButton">Cancel</button>
-                    </form>
-                `;
+        editButtonClick(editbtn, itemDiv, item);
 
-            itemDiv.innerHTML = editForm;
-
-            if (document.body.contains(itemDiv)) {
-                const editForm = document.getElementById("editForm");
-                editForm.addEventListener("submit", (e) => {
-                    e.preventDefault();
-                    const newTitle = document.getElementById("editTitle").value;
-                    const newPriority = document.getElementById("editPriority").value;
-                    item.title = newTitle;
-                    item.priority = newPriority;
-              
-                    displayProjects(listContainer);
-                });
-            }
-
-            const cancelEditButton = document.getElementById("cancelEditButton");
-            cancelEditButton.addEventListener("click", () => {
-                displayProjects(listContainer);
-            }); 
-
-        });
-
-    
         itemDiv.appendChild(editbtn);
 
             const deletebtn = deleteButton();
@@ -87,8 +47,8 @@ function displayProjects(listContainer) {
             const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
             
                 getList().splice(indexTodelete, 1);
-            
-            displayProjects(listContainer);
+
+            displayProjects(container);
         });
         itemDiv.appendChild(deletebtn);
    
