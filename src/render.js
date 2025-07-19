@@ -1,11 +1,11 @@
 import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
-import {createEditButton, editButtonClick} from "./editButton.js";
+import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
 
 console.log(getList())
 function displayProjects(container) {
-      const sortedList = [...getList()].sort((a, b) => Number(b.priority) - Number(a.priority));
+      const sortedList = getList()
 
       console.log(sortedList);
     container.innerHTML = "";
@@ -19,26 +19,11 @@ function displayProjects(container) {
         itemDiv.appendChild(itemTitle);
         container.appendChild(itemDiv);
 
-        if (item.priority) {
-            const prioritySymbol = checkPriority(item.priority);
-            const prioritySpan = document.createElement("span");
-            prioritySpan.textContent = prioritySymbol;
-            prioritySpan.className = "priority-symbol";
-            itemDiv.appendChild(prioritySpan);
-        }
-
-        if (item.dueDate) {
-            const dueDateSpan = document.createElement("span");
-            dueDateSpan.textContent = `Due: ${item.dueDate}`;
-            dueDateSpan.className = "due-date";
-            itemDiv.appendChild(dueDateSpan);
-        }
-
         console.log(item)
         const editbtn = createEditButton()
 
 
-        editButtonClick(editbtn, itemDiv, item);
+        editProjectClick(editbtn, itemDiv, item);
 
         itemDiv.appendChild(editbtn);
 
@@ -56,8 +41,20 @@ function displayProjects(container) {
 
     
 
-
-    console.log(sortedList)
+    console.log(getList());
+    console.log(sortedList);
 }
 
-export default displayProjects;
+function addProjectButton(){
+    const body = document.querySelector("body");
+    const projectButtonDiv = document.createElement("div");
+    projectButtonDiv.id = "project-button-div";
+    const addProjectForm = document.createElement("button");
+    addProjectForm.textContent = "Add Project";
+    addProjectForm.id = "add-project-form";
+    projectButtonDiv.appendChild(addProjectForm);
+    body.appendChild(projectButtonDiv);
+}
+
+
+export {displayProjects, addProjectButton };

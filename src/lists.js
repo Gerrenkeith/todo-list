@@ -1,12 +1,9 @@
 let list = [];
- function createListItem(title, priority, dueDate, description, notes = "", checklist = []) {
+ function createListItem(title, checklist = []) {
     return {
         title,
-        description,
-        dueDate,
-        priority,
-        notes,
         checklist
+        
     };
 }
 
@@ -18,6 +15,7 @@ function addToList(title, priority, dueDate, description, notes, checklist) {
     }
     const newItem = createListItem(title, priority, dueDate, description, notes, checklist);
     list.push(newItem);
+    console.log(list);
     return true;
 }
 
@@ -25,4 +23,12 @@ function getList() {
     return list;
 }
 
-export { addToList, getList };
+function editListItem(index, updatedItem) {
+    if (list[index]) {
+        list[index] = { ...list[index], ...updatedItem };
+        return true;
+    }
+    return false;
+}
+
+export { addToList, getList, editListItem };
