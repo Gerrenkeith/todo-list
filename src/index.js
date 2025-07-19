@@ -17,9 +17,13 @@ app.appendChild(listContainer);
 
 addToList("Project 1")
 displayProjects(listContainer);
-addProjectButton();
 
-const projectButtonDiv = document.getElementById("project-button-div");
+
+    const projectButtonDiv = document.createElement("div");
+    projectButtonDiv.id = "project-button-div";
+    body.appendChild(projectButtonDiv);
+    
+addProjectButton();
 const addProjectFormButton = document.getElementById("add-project-form");
 
 projectForm(projectButtonDiv, addProjectFormButton);

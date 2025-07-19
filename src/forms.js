@@ -19,6 +19,7 @@ function projectForm(tagOne, tagTwo) {
 
                 tagTwo.addEventListener("click", () => {
                 tagTwo.remove();
+                tagOne.innerHTML = "";
                 tagOne.appendChild(projectFormContainer);
 
                 const projectFormElement = document.getElementById("projectForm");

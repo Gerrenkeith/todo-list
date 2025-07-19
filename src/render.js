@@ -47,11 +47,11 @@ function displayProjects(container) {
 
 function addProjectButton(){
     const body = document.querySelector("body");
-    const projectButtonDiv = document.createElement("div");
-    projectButtonDiv.id = "project-button-div";
     const addProjectForm = document.createElement("button");
     addProjectForm.textContent = "Add Project";
     addProjectForm.id = "add-project-form";
+
+    const projectButtonDiv = document.getElementById("project-button-div");
     projectButtonDiv.appendChild(addProjectForm);
     body.appendChild(projectButtonDiv);
 }
