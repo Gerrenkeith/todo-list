@@ -31,4 +31,11 @@ function editListItem(index, updatedItem) {
     return false;
 }
 
+function addToChecklist(project, itemToAdd){
+    const projectItem = list.find(item => item.title === project)
+    const itemIndex = list.findIndex(item => item.title === project)
+
+    let newChecklist = projectItem.checklist
+}
+
 export { addToList, getList, editListItem };
