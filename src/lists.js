@@ -7,13 +7,13 @@ let list = [];
     };
 }
 
-function addToList(title, priority, dueDate, description, notes, checklist) {
+function addToList(title, checklist) {
     const exists = list.some(item => item.title.toLowerCase() === title.toLowerCase());
     if (exists) {
         alert("A project with this title already exists.");
         return false;
     }
-    const newItem = createListItem(title, priority, dueDate, description, notes, checklist);
+    const newItem = createListItem(title, checklist);
     list.push(newItem);
     console.log(list);
     return true;
@@ -36,6 +36,13 @@ function addToChecklist(project, itemToAdd){
     const itemIndex = list.findIndex(item => item.title === project)
 
     let newChecklist = projectItem.checklist
+
+    newChecklist.push(itemToAdd)
+
+    const orderedChecklist = [...newChecklist].sort((a,b) => Number(b.priority) - Number(a.priority))
+
+    list[itemIndex].checklist = orderedChecklist
+    console.log(list)
 }
 
-export { addToList, getList, editListItem };
+export { addToList, getList, editListItem, addToChecklist, createListItem };

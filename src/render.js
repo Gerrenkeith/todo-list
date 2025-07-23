@@ -2,30 +2,50 @@ import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
 import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
+import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
 
 console.log(getList())
 function displayProjects(container) {
-      const sortedList = getList()
+      const list = getList()
 
-      console.log(sortedList);
+      console.log(list);
     container.innerHTML = "";
-    sortedList.forEach((item, index) => {
-        const itemDiv = document.createElement("div");
+    list.forEach((item, index) => {
+        const itemDiv = document.createElement("div"); 
         itemDiv.id = index;
         itemDiv.className = "list-item";
+
+        const checklistButtonDiv = document.createElement('div');
+        checklistButtonDiv.className = "checklist-button-div"
+
+       
+        const editButtonsDiv = document.createElement("div");
+        editButtonsDiv.className = "edit-button-div";
+        
+        const itemInfoDisplay = document.createElement("div");
+        itemInfoDisplay.className = 'item-info-display'
         const itemTitle = document.createElement("h3");
+       
         itemTitle.textContent = item.title;
         itemTitle.id = item.title;
-        itemDiv.appendChild(itemTitle);
+        itemDiv.appendChild(itemInfoDisplay);
+        itemInfoDisplay.appendChild(itemTitle);
         container.appendChild(itemDiv);
 
-        console.log(item)
-        const editbtn = createEditButton()
+        const checklistButton = addToCheckListButton();
+        itemDiv.appendChild(checklistButtonDiv);
+        checklistButtonDiv.appendChild(checklistButton)
+
+
+        addToChecklistClick(checklistButton, itemInfoDisplay,  item.title)
+
+        console.log(item);
+        const editbtn = createEditButton();
 
 
         editProjectClick(editbtn, itemDiv, item);
 
-        itemDiv.appendChild(editbtn);
+        editButtonsDiv.appendChild(editbtn);
 
             const deletebtn = deleteButton();
         deletebtn.addEventListener("click", () => {
@@ -35,14 +55,16 @@ function displayProjects(container) {
 
             displayProjects(container);
         });
-        itemDiv.appendChild(deletebtn);
+        editButtonsDiv.appendChild(deletebtn);
+
+       itemDiv.appendChild(editButtonsDiv)
    
         })
 
     
 
     console.log(getList());
-    console.log(sortedList);
+    
 }
 
 function addProjectButton(){
