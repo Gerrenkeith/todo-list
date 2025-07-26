@@ -15,6 +15,10 @@ function displayProjects(container) {
         itemDiv.id = index;
         itemDiv.className = "list-item";
 
+        const linkForChecklist = document.createElement("a")
+        linkForChecklist.href = '#' 
+        linkForChecklist.id = index;
+
         const checklistButtonDiv = document.createElement('div');
         checklistButtonDiv.className = "checklist-button-div"
 
@@ -24,13 +28,14 @@ function displayProjects(container) {
         
         const itemInfoDisplay = document.createElement("div");
         itemInfoDisplay.className = 'item-info-display'
-        const itemTitle = document.createElement("h3");
+        const itemTitleDisplay = document.createElement("h3");
        
-        itemTitle.textContent = item.title;
-        itemTitle.id = item.title;
-        itemDiv.appendChild(itemInfoDisplay);
-        itemInfoDisplay.appendChild(itemTitle);
+        linkForChecklist.textContent = item.title;
+        itemTitleDisplay.id = item.title;
         container.appendChild(itemDiv);
+        itemDiv.appendChild(itemInfoDisplay);
+        itemInfoDisplay.appendChild(itemTitleDisplay);
+        itemTitleDisplay.appendChild(linkForChecklist)
 
         const checklistButton = addToCheckListButton();
         itemDiv.appendChild(checklistButtonDiv);
@@ -58,6 +63,24 @@ function displayProjects(container) {
         editButtonsDiv.appendChild(deletebtn);
 
        itemDiv.appendChild(editButtonsDiv)
+
+       linkForChecklist.addEventListener('click', () => {
+        const checklistDiv = document.getElementById("checklist-list")
+        const displayForCheckListItems = document.createElement("div")
+        displayForCheckListItems.className = 'display-for-checklist-items'
+
+        const unorderedList = document.createElement("ul")
+
+        
+        checklistDiv.appendChild(displayForCheckListItems)
+        displayForCheckListItems.appendChild(unorderedList)
+        item.checklist.map((a) => {
+            const li = document.createElement('li')
+            li.textContent = `${a.title}`
+            unorderedList.appendChild(li)
+        })
+        console.log(item.checklist)
+       })
    
         })
 
@@ -68,15 +91,18 @@ function displayProjects(container) {
 }
 
 function addProjectButton(){
-    const body = document.querySelector("body");
+    const projectsDiv = document.querySelector("#projects-list");
     const addProjectForm = document.createElement("button");
     addProjectForm.textContent = "Add Project";
     addProjectForm.id = "add-project-form";
 
     const projectButtonDiv = document.getElementById("project-button-div");
     projectButtonDiv.appendChild(addProjectForm);
-    body.appendChild(projectButtonDiv);
+    projectsDiv.appendChild(projectButtonDiv);
 }
+
+
+
 
 
 export {displayProjects, addProjectButton };
