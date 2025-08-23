@@ -40,17 +40,38 @@ function displayProjects(container) {
         itemDiv.appendChild(checklistDiv)
         checklistDiv.appendChild(projectUl)
 
+        projectUl.style.listStyle = 'none';
+
         const listOfItems = item.checklist;
 
         console.log(listOfItems)
         
         listOfItems.map((listItem) => {
             const li = document.createElement('li')
+            const input = document.createElement('input')
+            input.type = 'checkbox'
+            input.id = listItem.title
+            input.name = listItem.title
+            input.value = listItem.title
+
+            const span = document.createElement('span')
+            span.textContent = listItem.title
 
             console.log(listItem)
-
-            li.textContent = listItem.title
+            li.appendChild(input)
+            li.appendChild(span)
+            
             projectUl.appendChild(li)
+
+            input.addEventListener('change', () => {
+                if(input.checked){
+                    listItem.completed = true;
+                    span.style.textDecoration = 'line-through'
+                } else {
+                    listItem.completed = false;
+                    span.style.textDecoration = 'none'
+                }
+        })
         })
 
         const checklistButton = addToCheckListButton();
