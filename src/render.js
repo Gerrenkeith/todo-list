@@ -15,14 +15,14 @@ function displayProjects(container) {
         itemDiv.id = index;
         itemDiv.className = "list-item";
 
-        const linkForChecklist = document.createElement("a")
-        linkForChecklist.href = '#' 
-        linkForChecklist.id = index;
+        const checklistDiv = document.createElement('div')
+
+        const projectUl = document.createElement('ul')
+        projectUl.id = `${item.title}ul`
 
         const checklistButtonDiv = document.createElement('div');
         checklistButtonDiv.className = "checklist-button-div"
 
-       
         const editButtonsDiv = document.createElement("div");
         editButtonsDiv.className = "edit-button-div";
         
@@ -30,12 +30,28 @@ function displayProjects(container) {
         itemInfoDisplay.className = 'item-info-display'
         const itemTitleDisplay = document.createElement("h3");
        
-        linkForChecklist.textContent = item.title;
+        
         itemTitleDisplay.id = item.title;
+        itemTitleDisplay.textContent = item.title;
         container.appendChild(itemDiv);
         itemDiv.appendChild(itemInfoDisplay);
         itemInfoDisplay.appendChild(itemTitleDisplay);
-        itemTitleDisplay.appendChild(linkForChecklist)
+
+        itemDiv.appendChild(checklistDiv)
+        checklistDiv.appendChild(projectUl)
+
+        const listOfItems = item.checklist;
+
+        console.log(listOfItems)
+        
+        listOfItems.map((listItem) => {
+            const li = document.createElement('li')
+
+            console.log(listItem)
+
+            li.textContent = listItem.title
+            projectUl.appendChild(li)
+        })
 
         const checklistButton = addToCheckListButton();
         itemDiv.appendChild(checklistButtonDiv);
@@ -60,39 +76,42 @@ function displayProjects(container) {
 
             displayProjects(container);
         });
+
         editButtonsDiv.appendChild(deletebtn);
 
        itemDiv.appendChild(editButtonsDiv)
 
-       linkForChecklist.addEventListener('click', () => {
-        const checklistDiv = document.getElementById("checklist-list")
-        const displayForCheckListItems = document.createElement("div")
-        displayForCheckListItems.className = 'display-for-checklist-items'
+       
 
-        const unorderedList = document.createElement("ul")
+    //    linkForChecklist.addEventListener('click', () => {
+    //     const checklistDiv = document.getElementById("checklist-list")
+    //     const displayForCheckListItems = document.createElement("div")
+    //     displayForCheckListItems.className = 'display-for-checklist-items'
+
+    //     const unorderedList = document.createElement("ul")
 
         
-        checklistDiv.appendChild(displayForCheckListItems)
-        displayForCheckListItems.appendChild(unorderedList)
-        item.checklist.map((a) => {
-            const allLis = document.querySelectorAll('li')
-            console.log(allLis)
-            const allLisValues = []
+    //     checklistDiv.appendChild(displayForCheckListItems)
+    //     displayForCheckListItems.appendChild(unorderedList)
+    //     item.checklist.map((a) => {
+    //         const allLis = document.querySelectorAll('li')
+    //         console.log(allLis)
+    //         const allLisValues = []
 
-            allLis.forEach( element => {
-                allLisValues.push(element.textContent)
-            })
+    //         allLis.forEach( element => {
+    //             allLisValues.push(element.textContent)
+    //         })
 
-            const exists = allLisValues.some( item => item.toLowerCase() === a.title.toLowerCase());
+    //         const exists = allLisValues.some( item => item.toLowerCase() === a.title.toLowerCase());
             
-          if(!exists){  
-            const li = document.createElement('li')
-            li.textContent = `${a.title}`
-            unorderedList.appendChild(li)
-          }
-        })
-        console.log(item.checklist)
-       })
+    //       if(!exists){  
+    //         const li = document.createElement('li')
+    //         li.textContent = `${a.title}`
+    //         unorderedList.appendChild(li)
+    //       }
+    //     })
+    //     console.log(item.checklist)
+    //    })
    
         })
 
