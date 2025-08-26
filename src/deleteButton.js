@@ -1,6 +1,6 @@
 function deleteButton() {
     const button = document.createElement("button");
-    button.textContent = "Delete";
+    button.textContent = "x";
     button.className = "delete-button";
     return button;
 }

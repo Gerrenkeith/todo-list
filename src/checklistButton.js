@@ -3,7 +3,7 @@ import { displayProjects } from './render.js'
 
 function addToCheckListButton(){
     const button = document.createElement("button")
-    button.textContent = "Add To Checklist"
+    button.textContent = "+"
     button.className = "add-to-checklist-button"
     return button
 }

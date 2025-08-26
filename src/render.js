@@ -4,9 +4,10 @@ import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
 import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
 
+const list = getList()
+
 console.log(getList())
 function displayProjects(container) {
-      const list = getList()
 
       console.log(list);
     container.innerHTML = "";
@@ -84,13 +85,23 @@ function displayProjects(container) {
             li.appendChild(span)
             
             projectUl.appendChild(li)
+            
+            const indexOfItem = listOfItems.findIndex(ci => ci.title === listItem.title);
+
+            if(listItem.completed === true){
+                input.checked = true;
+                span.style.textDecoration = 'line-through';
+            }
 
             input.addEventListener('change', () => {
                 if(input.checked){
                     listItem.completed = true;
+
+                    list[index].checklist[indexOfItem].completed = true;
                     span.style.textDecoration = 'line-through'
                 } else {
                     listItem.completed = false;
+                   list[index].checklist[indexOfItem].completed = false;
                     span.style.textDecoration = 'none'
                 }
         })
@@ -116,7 +127,7 @@ function displayProjects(container) {
 function addProjectButton(){
     const projectsDiv = document.querySelector("#projects-list");
     const addProjectForm = document.createElement("button");
-    addProjectForm.textContent = "Add Project";
+    addProjectForm.textContent = "Add To-Do list";
     addProjectForm.id = "add-project-form";
 
     const projectButtonDiv = document.getElementById("project-button-div");
