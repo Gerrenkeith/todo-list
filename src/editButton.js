@@ -4,7 +4,7 @@ import { displayProjects} from "./render.js";
 
 function createEditButton() {
     const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
+    editButton.textContent = "✍️";
     editButton.className = "edit-button";
     return editButton;
 }

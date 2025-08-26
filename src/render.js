@@ -11,10 +11,22 @@ function displayProjects(container) {
       console.log(list);
     container.innerHTML = "";
     list.forEach((item, index) => {
+   
+        const deletebtn = deleteButton();
+        deletebtn.addEventListener("click", () => {
+            const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
+            
+                getList().splice(indexTodelete, 1);
+
+            displayProjects(container);
+        });
+
+
         const itemDiv = document.createElement("div"); 
         itemDiv.id = index;
         itemDiv.className = "list-item";
 
+        itemDiv.appendChild(deletebtn);
         const checklistDiv = document.createElement('div')
 
         const projectUl = document.createElement('ul')
@@ -28,6 +40,9 @@ function displayProjects(container) {
         
         const itemInfoDisplay = document.createElement("div");
         itemInfoDisplay.className = 'item-info-display'
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "title-div";
         const itemTitleDisplay = document.createElement("h3");
        
         
@@ -35,7 +50,14 @@ function displayProjects(container) {
         itemTitleDisplay.textContent = item.title;
         container.appendChild(itemDiv);
         itemDiv.appendChild(itemInfoDisplay);
-        itemInfoDisplay.appendChild(itemTitleDisplay);
+        itemInfoDisplay.appendChild(titleDiv);
+        titleDiv.appendChild(itemTitleDisplay);
+         
+        const editbtn = createEditButton();
+        editProjectClick(editbtn, itemDiv, item);
+
+        titleDiv.appendChild(editButtonsDiv);
+        editButtonsDiv.appendChild(editbtn);
 
         itemDiv.appendChild(checklistDiv)
         checklistDiv.appendChild(projectUl)
@@ -82,25 +104,6 @@ function displayProjects(container) {
         addToChecklistClick(checklistButton, itemInfoDisplay,  item.title)
 
         console.log(item);
-        const editbtn = createEditButton();
-
-
-        editProjectClick(editbtn, itemDiv, item);
-
-        editButtonsDiv.appendChild(editbtn);
-
-            const deletebtn = deleteButton();
-        deletebtn.addEventListener("click", () => {
-            const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
-            
-                getList().splice(indexTodelete, 1);
-
-            displayProjects(container);
-        });
-
-        editButtonsDiv.appendChild(deletebtn);
-
-       itemDiv.appendChild(editButtonsDiv)
 
        
 
