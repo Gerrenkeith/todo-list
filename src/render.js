@@ -104,38 +104,6 @@ function displayProjects(container) {
         addToChecklistClick(checklistButton, itemInfoDisplay,  item.title)
 
         console.log(item);
-
-       
-
-    //    linkForChecklist.addEventListener('click', () => {
-    //     const checklistDiv = document.getElementById("checklist-list")
-    //     const displayForCheckListItems = document.createElement("div")
-    //     displayForCheckListItems.className = 'display-for-checklist-items'
-
-    //     const unorderedList = document.createElement("ul")
-
-        
-    //     checklistDiv.appendChild(displayForCheckListItems)
-    //     displayForCheckListItems.appendChild(unorderedList)
-    //     item.checklist.map((a) => {
-    //         const allLis = document.querySelectorAll('li')
-    //         console.log(allLis)
-    //         const allLisValues = []
-
-    //         allLis.forEach( element => {
-    //             allLisValues.push(element.textContent)
-    //         })
-
-    //         const exists = allLisValues.some( item => item.toLowerCase() === a.title.toLowerCase());
-            
-    //       if(!exists){  
-    //         const li = document.createElement('li')
-    //         li.textContent = `${a.title}`
-    //         unorderedList.appendChild(li)
-    //       }
-    //     })
-    //     console.log(item.checklist)
-    //    })
    
         })
 
