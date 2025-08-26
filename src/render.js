@@ -3,6 +3,7 @@ import { getList } from "./lists.js";
 import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
 import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
+import getPrioritySymbol from "./priority.js";
 
 const list = getList()
 
@@ -80,9 +81,17 @@ function displayProjects(container) {
             const span = document.createElement('span')
             span.textContent = listItem.title
 
+            const spanTwo = document.createElement('span')
+
+            const priorityLevel = getPrioritySymbol(listItem.priority)
+            spanTwo.textContent = priorityLevel
+
+
             console.log(listItem)
             li.appendChild(input)
             li.appendChild(span)
+            li.appendChild(spanTwo)
+
             
             projectUl.appendChild(li)
             
@@ -105,6 +114,17 @@ function displayProjects(container) {
                     span.style.textDecoration = 'none'
                 }
         })
+
+        const deleteChecklistItembtn = deleteButton();
+
+        li.appendChild(deleteChecklistItembtn);
+
+        deleteChecklistItembtn.addEventListener("click", () => {
+            
+                list[index].checklist.splice(indexOfItem, 1);
+
+            displayProjects(container);
+        });
         })
 
         const checklistButton = addToCheckListButton();

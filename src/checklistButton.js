@@ -16,8 +16,16 @@ const addToChecklistClick = (btn, parent, itemTitleString) => { // Renamed 'item
         
         checklistformContainer.innerHTML = `
         <h3>Add To Checklist</h3>
-        <form class="checklistForm"> <label for="itemTitle">Item:</label>
+        <form class="checklistForm"> 
+            <label for="itemTitle">Item:</label>
             <input type="text" id="itemTitle" name="itemTitle" required>
+            <label for="itemPriority">Priority:</label>
+            <select id="itemPriority" name="itemPriority" required>
+                <option value="" selected>Select priority</option>
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
             <br>
             <br>
             <button type="submit">Add</button>
@@ -37,12 +45,15 @@ const addToChecklistClick = (btn, parent, itemTitleString) => { // Renamed 'item
                 const checklistTitle = checklistformContainer.querySelector('#itemTitle').value; // Get value from input within this form
                 console.log(checklistTitle);
 
+                const checklistPriority = checklistformContainer.querySelector('#itemPriority').value;
+                console.log(checklistPriority);
+
                 // Assuming `createListItem` is for main project items,
                 // for checklist sub-items, you might want a simpler object.
                 // Let's assume a basic object structure for a checklist item with a title, priority, and completed status.
                 const createdChecklistItem = { 
                     title: checklistTitle, 
-                    priority: 0, // Default priority
+                    priority: checklistPriority, // Use the selected priority
                     completed: false 
                 };
                 
