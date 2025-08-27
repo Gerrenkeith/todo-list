@@ -1,4 +1,3 @@
-import checkPriority from "./priority.js";
 import { getList } from "./lists.js";
 import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
@@ -131,8 +130,8 @@ function displayProjects(container) {
         itemDiv.appendChild(checklistButtonDiv);
         checklistButtonDiv.appendChild(checklistButton)
 
-
-        addToChecklistClick(checklistButton, itemInfoDisplay,  item.title)
+        
+        addToChecklistClick(checklistButton, checklistButtonDiv,  item.title)
 
         console.log(item);
    

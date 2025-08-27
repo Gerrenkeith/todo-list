@@ -8,14 +8,13 @@ const body = document.querySelector("body");
 const app = document.createElement('div')
 app.id = 'app'
 const projectsDiv = document.createElement("div");
-const checklistDiv = document.createElement('div');
+
 projectsDiv.id = "projects-list"
-checklistDiv.id = 'checklist-list'
+
 const h1 = document.createElement("h1");
 h1.textContent = greeting;
 body.appendChild(app);
 app.appendChild(projectsDiv)
-app.appendChild(checklistDiv)
 projectsDiv.appendChild(h1);
 
 const listContainer = document.createElement("div");

@@ -19,19 +19,26 @@ const addToChecklistClick = (btn, parent, itemTitleString) => { // Renamed 'item
         <form class="checklistForm"> 
             <label for="itemTitle">Item:</label>
             <input type="text" id="itemTitle" name="itemTitle" required>
+            <br>
             <label for="itemPriority">Priority:</label>
-            <select id="itemPriority" name="itemPriority" required>
+            <select id="itemPriority" name="itemPriority" required]>
                 <option value="" selected>Select priority</option>
                 <option value="0">Low</option>
                 <option value="1">Medium</option>
                 <option value="2">High</option>
             </select>
             <br>
+            <label for="itemDescription">Description:</label>
+            <textarea id="itemDescription" name="itemDescription"></textarea>
+            <br>
+            <label for="itemDueDate">Due Date:</label>
+            <input type="date" id="itemDueDate" name="itemDueDate">
             <br>
             <button type="submit">Add</button>
             <button type="button" class="cancelChecklistItem">Cancel</button> </form>`;
 
         // Append the form container
+        parent.innerHTML = "";
         parent.appendChild(checklistformContainer);
 
         // Get direct reference to the form and cancel button within this specific form instance
@@ -48,12 +55,17 @@ const addToChecklistClick = (btn, parent, itemTitleString) => { // Renamed 'item
                 const checklistPriority = checklistformContainer.querySelector('#itemPriority').value;
                 console.log(checklistPriority);
 
+                const checklistDescription = checklistformContainer.querySelector('#itemDescription').value;
+                const checklistDueDate = checklistformContainer.querySelector('#itemDueDate').value;
+
                 // Assuming `createListItem` is for main project items,
                 // for checklist sub-items, you might want a simpler object.
                 // Let's assume a basic object structure for a checklist item with a title, priority, and completed status.
                 const createdChecklistItem = { 
                     title: checklistTitle, 
                     priority: checklistPriority, // Use the selected priority
+                    description: checklistDescription,
+                    dueDate: checklistDueDate,
                     completed: false 
                 };
                 
