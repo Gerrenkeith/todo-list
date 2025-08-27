@@ -3,6 +3,7 @@ import {createEditButton, editProjectClick} from "./editButton.js";
 import deleteButton from "./deleteButton.js";
 import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
 import getPrioritySymbol from "./priority.js";
+import { createExpandButton } from "./expandButton.js";
 
 const list = getList()
 
@@ -12,7 +13,15 @@ function displayProjects(container) {
       console.log(list);
     container.innerHTML = "";
     list.forEach((item, index) => {
-   
+
+        const expandbtn = createExpandButton();
+        expandbtn.addEventListener("click", () => {
+            const checklistDiv = document.createElement("div");
+            checklistDiv.className = "checklist-div";
+            itemDiv.appendChild(checklistDiv);
+            displayChecklist(item.checklist, checklistDiv);
+        });
+
         const deletebtn = deleteButton();
         deletebtn.addEventListener("click", () => {
             const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
@@ -27,6 +36,7 @@ function displayProjects(container) {
         itemDiv.id = index;
         itemDiv.className = "list-item";
 
+        itemDiv.appendChild(expandbtn);
         itemDiv.appendChild(deletebtn);
         const checklistDiv = document.createElement('div')
 
