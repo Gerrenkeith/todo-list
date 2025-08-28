@@ -1,8 +1,15 @@
-function deleteButton() {
-    const button = document.createElement("button");
-    button.textContent = "x";
-    button.className = "delete-button";
-    return button;
-}
+import { getList } from "./lists";
+import { displayProjects } from "./render";
 
-export default deleteButton;
+const deleteProjectButtonClick = (currentItem, display) => {
+    const indexToDelete = getList().findIndex((listItem) => listItem.title === currentItem.title);
+
+    if (indexToDelete !== -1) {
+        getList().splice(indexToDelete, 1);
+    }
+
+    displayProjects(display);
+};
+
+
+export { deleteProjectButtonClick };

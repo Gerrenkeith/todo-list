@@ -1,6 +1,6 @@
 import { getList } from "./lists.js";
 import {createEditButton, editProjectClick} from "./editButton.js";
-import deleteButton from "./deleteButton.js";
+import { deleteProjectButtonClick } from "./deleteButton.js";
 import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
 import getPrioritySymbol from "./priority.js";
 import { createExpandButton } from "./expandButton.js";
@@ -22,15 +22,16 @@ function displayProjects(container) {
             displayChecklist(item.checklist, checklistDiv);
         });
 
+        function deleteButton() {
+    const button = document.createElement("button");
+    button.textContent = "x";
+    button.className = "delete-button";
+    return button;
+}
+
+
         const deletebtn = deleteButton();
-        deletebtn.addEventListener("click", () => {
-            const indexTodelete = getList().findIndex((listItem) => listItem.title === item.title);
-            
-                getList().splice(indexTodelete, 1);
-
-            displayProjects(container);
-        });
-
+        deletebtn.addEventListener("click", () => deleteProjectButtonClick(item, container));
 
         const itemDiv = document.createElement("div"); 
         itemDiv.id = index;
