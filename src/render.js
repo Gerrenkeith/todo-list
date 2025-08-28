@@ -4,6 +4,7 @@ import { deleteProjectButtonClick } from "./deleteButton.js";
 import { addToCheckListButton, addToChecklistClick } from "./checklistButton.js";
 import getPrioritySymbol from "./priority.js";
 import { createExpandButton } from "./expandButton.js";
+import { checkboxChangeHandler } from "./checkBoxes.js";
 
 const list = getList()
 
@@ -112,18 +113,7 @@ function displayProjects(container) {
                 span.style.textDecoration = 'line-through';
             }
 
-            input.addEventListener('change', () => {
-                if(input.checked){
-                    listItem.completed = true;
-
-                    list[index].checklist[indexOfItem].completed = true;
-                    span.style.textDecoration = 'line-through'
-                } else {
-                    listItem.completed = false;
-                   list[index].checklist[indexOfItem].completed = false;
-                    span.style.textDecoration = 'none'
-                }
-        })
+            input.addEventListener('change', () => checkboxChangeHandler(input, listItem, span, index, indexOfItem));
 
         const deleteChecklistItembtn = deleteButton();
 
