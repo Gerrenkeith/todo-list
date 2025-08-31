@@ -7,6 +7,8 @@ import { projectForm } from "./forms.js";
 const body = document.querySelector("body");
 const app = document.createElement('div')
 app.id = 'app'
+addProjectButton(app);
+
 const projectsDiv = document.createElement("div");
 
 projectsDiv.id = "projects-list"
@@ -24,13 +26,10 @@ projectsDiv.appendChild(listContainer);
 addToList("Project 1")
 displayProjects(listContainer);
 
-
-    const projectButtonDiv = document.createElement("div");
-    projectButtonDiv.id = "project-button-div";
-    body.appendChild(projectButtonDiv);
     
-addProjectButton();
+
 const addProjectFormButton = document.getElementById("add-project-form");
+const projectButtonDiv = document.getElementById("project-button-div");
 
 projectForm(projectButtonDiv, addProjectFormButton);
 

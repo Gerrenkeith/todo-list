@@ -13,5 +13,12 @@ const checkboxChangeHandler = (input, listItem, span, index, indexOfItem) => {
                     span.style.textDecoration = 'none'
                 }
         }
-        
-export { checkboxChangeHandler };
+
+function isComplete(input, listItem, span){
+     if(listItem.completed === true){
+                input.checked = true;
+                span.style.textDecoration = 'line-through';
+            }
+}
+
+export { checkboxChangeHandler, isComplete }; 

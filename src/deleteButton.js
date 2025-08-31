@@ -11,5 +11,11 @@ const deleteProjectButtonClick = (currentItem, display) => {
     displayProjects(display);
 };
 
+const deleteChecklistItemClick = (list, index, checklistIndex) => {
+             
+                 list[index].checklist.splice(checklistIndex, 1);
 
-export { deleteProjectButtonClick };
+             displayProjects(container);
+}
+
+export { deleteProjectButtonClick, deleteChecklistItemClick };

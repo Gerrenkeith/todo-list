@@ -83,6 +83,7 @@ const addToChecklistClick = (btn, parent, itemTitleString) => { // Renamed 'item
             if (cancelBtn) {
                 cancelBtn.addEventListener('click', () => {
                     checklistformContainer.remove(); // Remove the form when cancel is clicked
+                    displayProjects(document.querySelector(".list-container"));
                 });
             }
         }

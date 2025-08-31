@@ -4,7 +4,7 @@ import { displayProjects, addProjectButton } from "./render.js";
 const list = getList();
 console.log(list);
 
-function projectForm(tagOne, tagTwo) {
+function projectForm(parent, button) {
     const projectFormContainer = document.createElement("div");
     projectFormContainer.id = "project-form-container";
     projectFormContainer.innerHTML  = `
@@ -17,10 +17,10 @@ function projectForm(tagOne, tagTwo) {
             </form>`
 
 
-                tagTwo.addEventListener("click", () => {
-                tagTwo.remove();
-                tagOne.innerHTML = "";
-                tagOne.appendChild(projectFormContainer);
+                button.addEventListener("click", () => {
+                button.remove();
+                parent.innerHTML = "";
+                parent.appendChild(projectFormContainer);
 
                 const projectFormElement = document.getElementById("projectForm");
                 projectFormElement.addEventListener("submit", (e) => {
@@ -34,7 +34,6 @@ function projectForm(tagOne, tagTwo) {
                         addProjectButton();
                         const projectButtonDiv = document.getElementById("project-button-div");
                         const addProjectFormButton = document.getElementById("add-project-form");
-                        projectForm(projectButtonDiv, addProjectFormButton);
                     }
                 });
             });
